@@ -17,6 +17,7 @@ func ReturnHTML(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.WriteHeader(http.StatusOK)
 	http.ServeFile(w, r, html)
 }
 
@@ -38,6 +39,7 @@ func UploadHTML(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		defer fileRes.Close()
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		fileRes.WriteString(converString)
 	}
 }
