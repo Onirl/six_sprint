@@ -40,6 +40,7 @@ func UploadHTML(w http.ResponseWriter, r *http.Request) {
 		}
 		defer fileRes.Close()
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.WriteHeader(http.StatusOK)
 		fileRes.WriteString(converString)
 	}
 }
