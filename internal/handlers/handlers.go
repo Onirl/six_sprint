@@ -11,13 +11,12 @@ import (
 )
 
 func ReturnHTML(w http.ResponseWriter, r *http.Request) {
-	html := "../index.html"
+	html := "./index.html"
 	if _, err := os.Stat(html); os.IsNotExist(err) {
 		http.Error(w, "Файл не найден", http.StatusNotFound)
 		return
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	w.WriteHeader(http.StatusOK)
 	http.ServeFile(w, r, html)
 }
 
@@ -41,6 +40,6 @@ func UploadHTML(w http.ResponseWriter, r *http.Request) {
 		defer fileRes.Close()
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.WriteHeader(http.StatusOK)
-		fileRes.WriteString(converString)
+		_, err = w.Write([]byte(converString))
 	}
 }
