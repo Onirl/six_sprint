@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	loger := log.New(os.Stdout, "INFO:", log.Ldate|log.Ltime)
+	loger := log.New(os.Stdout, "INFO:", log.Ldate|log.Ltime) //Создали логер
 	myServer := server.CreateServer(loger)
 	loger.Fatal(myServer.HttpServer.ListenAndServe())
 }
